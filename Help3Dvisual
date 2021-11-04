@@ -1,0 +1,58 @@
+float rotX, rotY, camX, camY, camZ;
+
+void setup()
+{
+  size(600, 600, P3D); 
+//  camX = width /2.0;
+//  camY = height/2.0;
+}
+
+void draw()
+{ //daqui
+  background(255);
+  lights();
+  fill(192);
+  stroke(0);
+
+  //navigation style 1
+  translate(camX, camY, camZ);
+  translate(width/2.0-camX, height/2.0-camY);
+  rotateY(rotY);
+  rotateX(rotX);
+  translate(-(width/2.0-camX), -(height/2.0-camY));
+
+  //navigation style 2
+//  float D = (camZ*sin(rotY));
+//  camera( camX + camZ*sin(rotX), camY + camZ*sin(rotY), camZ*cos(rotY)*cos(rotX),     camX ,camY, 0,     0,1,0);  
+
+  rect(100,100,400,400);
+}
+
+void mouseDragged()
+{
+  if (mouseButton == LEFT)
+  {
+    //navigation style 1
+    rotY += (pmouseX - mouseX)*0.01;
+    rotX += (pmouseY - mouseY)*0.01;
+    //navigation style 2
+//    rotX += (mouseX - pmouseX)*0.01;
+//    rotY += (mouseY - pmouseY)*0.01;
+  }
+  if (mouseButton == RIGHT)
+  {
+    //navigation style 1
+    camX -= (pmouseX - mouseX);
+    camY -= (pmouseY - mouseY);
+    //navigation style 2
+//    camX -= (mouseX - pmouseX);
+//    camY -= (mouseY - pmouseY);
+  }
+  if (mouseButton == CENTER)
+  {
+    //navigation style 1
+    camZ += (pmouseY - mouseY);
+    //navigation style 2
+//    camZ += (mouseY - pmouseY);
+  }
+}
