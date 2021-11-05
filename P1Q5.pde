@@ -1,6 +1,5 @@
 
 int r2=100;
-float d = 100;
 float theta =0;
 int r1=25;
 
